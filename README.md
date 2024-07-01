@@ -7,6 +7,7 @@ Esta API, construida con FastAPI, permite comunicarse con la API de Vidoomy para
 - Python 3.10+
 - FastAPI
 - requests
+- uvicorn
 
 ## Instalación
 
