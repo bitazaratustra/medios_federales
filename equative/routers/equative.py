@@ -7,7 +7,7 @@ router = APIRouter()
 
 @router.post("/api/domain", response_model=ReportResponse)
 def get_domain_report(request: ReportRequest):
-    url = "https://login.vidoomy.com/api/domain"
+    url = "https://reporting.smartadserverapis.com"
     payload = {
         "user": request.user,
         "password": request.password,

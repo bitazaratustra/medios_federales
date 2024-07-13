@@ -51,8 +51,10 @@ Obtiene el reporte de ingresos por dominio para el rango de fechas especificado.
 
 ```json
 {
-    "user": "your_user",
-    "password": "your_password",
-    "date_from": "YYYY/MM/DD",
-    "date_to": "YYYY/MM/DD"
+    "IsOpenAuction" : "true",
+    "HasPrivateAuction" : "true", 
+    "HasDirectDeal" : "true",
+    "IsHeaderBidding": "true",
+    "IsAuctionPackages" : "true"
+
 }
