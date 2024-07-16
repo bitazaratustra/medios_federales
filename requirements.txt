@@ -1,3 +1,11 @@
 fastapi 
 uvicorn 
 requests
+python-dotenv
+sqlalchemy
+mysqlclient
+python3-dev 
+default-libmysqlclient-dev 
+build-essential
+pymysql
+cryptography
