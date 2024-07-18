@@ -7,3 +7,7 @@ def create_item(db: Session, item: dict):
     db.commit()
     db.refresh(db_item)
     return db_item
+
+def datos_contactos(db: Session):
+    contactos = db.query(model_contacto.Contactos).all()
+    return contactos
