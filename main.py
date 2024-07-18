@@ -5,8 +5,11 @@ from sqlalchemy.orm import Session
 from medios_federales.cruds import contactos as crud_contactos
 from database import SessionLocal, engine
 
+from pydantic import BaseModel, validator
+
 from medios_federales.models import contactos as model_contactos
 from medios_federales.schemas.contactos import ContactosContactos
+
 model_contactos.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
@@ -56,9 +59,9 @@ def load_csv(db: Session = Depends(get_db)):
 
 
 
-@app.get("/contactos/nombre-apellido",
-         response_model=List[ContactosContactos])
-
-def get_nombre_apellido():
-    db = SessionLocal()
-    return crud_contactos.datos_contactos(db)
+@app.get("/contactos/nombre-apellido", response_model=List[ContactosContactos])
+def get_nombre_apellido(db: Session = Depends(get_db)):
+    try:
+        return crud_contactos.datos_contactos(db)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching contact data: {str(e)}")
