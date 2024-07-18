@@ -1,19 +1,21 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from dotenv import load_dotenv
 
-load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL")
+MYSQL_USER="root"
+MYSQL_PASSWORD="bita1986"
+MYSQL_SERVER="localhost"
+MYSQL_PORT="3306"
+MYSQL_DB="medios_federales"
 
+DATABASE_URL=f'mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_SERVER}/{MYSQL_DB}'
 
 engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, pool_pre_ping=True, pool_recycle=3600
+    DATABASE_URL, pool_pre_ping=True
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
-
-

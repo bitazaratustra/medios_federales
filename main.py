@@ -2,7 +2,7 @@ import csv
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from medios_federales.cruds import contactos as crud_contactos
-from medios_federales.database import SessionLocal, engine
+from database import SessionLocal, engine
 
 from medios_federales.models import contactos as model_contactos
 model_contactos.Base.metadata.create_all(bind=engine)
@@ -47,9 +47,9 @@ def load_csv(db: Session = Depends(get_db)):
                     # Revertir la transacción en caso de error
                     db.rollback()
                     raise HTTPException(status_code=500, detail=f"Error loading CSV data: {str(e)}")
-        
+
         return {"message": "CSV data loaded successfully"}
-    
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error loading CSV data: {str(e)}")
     finally:
