@@ -14,7 +14,6 @@ model_contactos.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-# Función para obtener la sesión de la base de datos
 def get_db():
     db = SessionLocal()
     try:
@@ -22,7 +21,7 @@ def get_db():
     finally:
         db.close()
 
-# Ruta para cargar datos desde CSV
+
 @app.post("/load-csv/")
 def load_csv(db: Session = Depends(get_db)):
     try:
